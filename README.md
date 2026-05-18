@@ -1,38 +1,29 @@
 # 🍔 HamburgerGame
 
-Juego de consola en C# para practicar lógica y Programación Orientada a Objetos antes de migrar a Unity.
+Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 
----
-
-## 🚀 Estado actual
-
+## Estado actual
 - [x] Estructura base con interfaz `IVerificable`
 - [x] Validación de ingredientes disponibles
-- [ ] Sistema de vidas / intentos
-- [ ] Múltiples niveles con recetas distintas
+- [x] Vidas / intentos limitados (3 vidas)
+- [x] Múltiples niveles con recetas de dificultad creciente
+- [x] Receta oculta — el jugador adivina
 - [ ] Refactor para Unity
 
----
+## Niveles
+| Nivel | Ingredientes |
+|-------|-------------|
+| 1 | 3 ingredientes |
+| 2 | 4 ingredientes |
+| 3 | 5 ingredientes |
+| 4 | 7 ingredientes |
 
-## 🧠 Conceptos practicados
-
+## Conceptos practicados
 - Interfaces
 - Clases y encapsulamiento
-- Listas y `HashSet`
-- Separación de responsabilidades (`Models / Services`)
-- Validación de datos
-- Lógica secuencial
+- Listas, HashSet
+- Separación de responsabilidades (Models / Services)
+- Lógica de estado (vidas, niveles, game loop)
 
----
-
-## ▶️ Ejecutar el proyecto
-
-```bash
+## Correr el proyecto
 dotnet run
-```
-
----
-
-## 📌 Objetivo
-
-Practicar fundamentos sólidos de C# y POO mediante proyectos pequeños antes de pasar a desarrollo de videojuegos con Unity.

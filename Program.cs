@@ -6,10 +6,10 @@ int vidas = 3;
 while (vidas > 0)
 {
     Console.Clear();
-    RecetaService.MostrarReceta();
+    Console.WriteLine($"=== NIVEL {RecetaService.NivelActual} ===");
     RecetaService.MostrarIngredientesValidos();
    Console.WriteLine($"\nVidas: {new string('❤', vidas)}");
-   Console.WriteLine("\nAgregá ingredientes en orden. Escribe 'listo' cuando termines\n");
+   Console.WriteLine($"La hamburguesa tiene {RecetaService.RecetaCorrecta.Count} ingredientes. ¡ADIVINA EL ORDEN!\n");
 
 var hamburguesa = new Hamburguesa();
 
@@ -29,16 +29,24 @@ while (true)
 }
 if (hamburguesa.Verificar(RecetaService.RecetaCorrecta))
     {
-        Console.WriteLine("\nHAMBURGUESA PERFECTA!!!! 🍔 ");
-        break;
+        Console.WriteLine("\n!CORRECTO! 🍔");
+        if (!RecetaService.HayMasNiveles)
+        {
+            Console.WriteLine("¡Completaste todos los niveles! 🏆");
+            break;
+        }
+        RecetaService.SiguienteNivel();
+        vidas = 3;
+        Console.WriteLine("siguiente nivel.. Enter para continuar.");
     }
-    vidas--;
-    Console.WriteLine(vidas > 0
-    ? $"\nOrden incorrecto. te quedan {vidas} vida(s). Enter para reintentar. "
-    : "\nGame Over. 💀");
+    else
+    {
+        vidas--;
+        Console.WriteLine(vidas > 0
+        ? $"\nIncorrecto. te quedan {vidas} vida(s). enter para reintentar."
+        : "\nGame Over. 💀");
+    }
     Console.ReadLine();
-
-
 
 }
 
