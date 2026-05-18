@@ -1,6 +1,7 @@
 {
   "Nombre": "henry",
-  "NivelActual": 0,
-  "MejorNivel": 0,
-  "PartidasJugadas": 3
+  "NivelActual": 2,
+  "MejorNivel": 2,
+  "PartidasJugadas": 8,
+  "MejorPuntaje": 950
 }

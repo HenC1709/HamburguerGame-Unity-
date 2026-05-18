@@ -6,5 +6,6 @@ namespace Hamburguesas.Models
         public int NivelActual { get; set; } = 0;
         public int MejorNivel { get; set; } = 0;
         public int PartidasJugadas { get; set; } = 0;
+        public int MejorPuntaje { get; set; } = 0;
     }
 }

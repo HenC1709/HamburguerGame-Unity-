@@ -1,5 +1,6 @@
 ﻿using Hamburguesas.Models;
 using Hamburguesas.Services;
+using System.Diagnostics;
 
 var SaveService = new SaveService();
 var RecetaService = new RecetaService();
@@ -32,16 +33,15 @@ while (vidas > 0)
 
 var pista = RecetaService.ObtenerPista();
 if (!string.IsNullOrEmpty(pista))
-Console.WriteLine(pista);
-Console.WriteLine();
+Console.WriteLine(pista + "\n");
 
+var stopwatch = Stopwatch.StartNew();
 var hamburguesa = new Hamburguesa();
 
 while (hamburguesa.Count < RecetaService.RecetaCorrecta.Count)
 {
     var input = Console.ReadLine()?.Trim().ToLower();
     if (input == "rendirse") break; // salida manual
-
     if (string.IsNullOrEmpty(input)) continue;
 
     if (!RecetaService.EsValido(input))
@@ -51,15 +51,25 @@ while (hamburguesa.Count < RecetaService.RecetaCorrecta.Count)
     }
     hamburguesa.AgregarIngrediente(new Ingrediente(input));
 }
+
+stopwatch.Stop();
+int segundos = (int)stopwatch.Elapsed.TotalSeconds;
+int puntaje = Math.Max(0, 1000 - (segundos * 10));
+
 if (hamburguesa.Verificar(RecetaService.RecetaCorrecta))
     {
-        Console.WriteLine("\n!CORRECTO! 🍔");
+        Console.WriteLine($"\n!CORRECTO! 🍔 Tiempo: {segundos}s | Puntaje: {puntaje}");
         jugador.PartidasJugadas++;
+
+        if (puntaje > jugador.MejorPuntaje)
+        {
+            jugador.MejorPuntaje = puntaje;
+            Console.WriteLine("🏅 ¡NUEVO MEJOR PUNTAJE!");
+        }
 
         if (!RecetaService.HayMasNiveles)
         {
             Console.WriteLine("¡Completaste todos los niveles! 🏆");
-            jugador.MejorNivel = RecetaService.NivelActual - 1;
             SaveService.Guardar(jugador);
             break;
         }

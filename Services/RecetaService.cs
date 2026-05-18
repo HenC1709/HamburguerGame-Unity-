@@ -1,3 +1,4 @@
+using System.Diagnostics;
 namespace Hamburguesas.Services;
 
 public class RecetaService
@@ -18,6 +19,7 @@ public class RecetaService
     "Pista: el primer ingrediente es 'pan' y lleva 7 capas 🧅"  
   };
   private int _niveActual = 0;
+  private static readonly Random _rng = new();
   public List<string> RecetaCorrecta => _niveles[_niveActual];
   public bool HayMasNiveles => _niveActual < _niveles.Count - 1;
   public int NivelActual => _niveActual + 1;
@@ -25,8 +27,12 @@ public class RecetaService
   public void SetNivel(int nivel) => _niveActual = Math.Clamp(nivel, 0, _niveles.Count - 1);
  public void SiguienteNivel() => _niveActual++;
  public string ObtenerPista() => _Pistas[_niveActual];
+ public List<string> IngredientesAleatorios()
+    {
+        var lista = new List<string>(IngredientesValidos);
+        return lista.OrderBy(_ => _rng.Next()).ToList();
+    }
   
-
     public HashSet<string> IngredientesValidos { get; } = new()
     {
         "pan", "carne", "queso", "lechuga", "tomate", "cebolla"
