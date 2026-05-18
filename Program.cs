@@ -37,19 +37,19 @@ Console.WriteLine();
 
 var hamburguesa = new Hamburguesa();
 
-while (true)
+while (hamburguesa.Count < RecetaService.RecetaCorrecta.Count)
 {
     var input = Console.ReadLine()?.Trim().ToLower();
-    if (input == "listo") break;
+    if (input == "rendirse") break; // salida manual
 
     if (string.IsNullOrEmpty(input)) continue;
 
-    if (!RecetaService.EsValido(input!))
+    if (!RecetaService.EsValido(input))
     {
      Console.WriteLine($"{input}' no es un ingrediente valido.");
      continue;
     }
-    hamburguesa.AgregarIngrediente(new Ingrediente(input!));
+    hamburguesa.AgregarIngrediente(new Ingrediente(input));
 }
 if (hamburguesa.Verificar(RecetaService.RecetaCorrecta))
     {

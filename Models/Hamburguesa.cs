@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using Hamburguesas.interfaces;
 
 namespace Hamburguesas.Models
@@ -24,5 +25,6 @@ namespace Hamburguesas.Models
             }
             return true;
         }
+        public int Count => _ingredientes.Count;
     }
 }

@@ -5,7 +5,8 @@ namespace Hamburguesas.Services
 {
     public class SaveService
     {
-        private const string PATH = "Progreso.json";
+    private static readonly string PATH = Path.Combine("Data", "progreso.json");
+
         public void Guardar(Jugador jugador)
         {
             var json = JsonSerializer.Serialize(jugador, new JsonSerializerOptions { WriteIndented = true });
