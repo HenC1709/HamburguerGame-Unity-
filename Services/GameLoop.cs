@@ -31,8 +31,9 @@ namespace Hamburguesas.Services
         private void MostrarEstado()
         {
             Console.Clear();
-            Console.WriteLine($"=== {_jugador.Nombre} | NIVEL {_recetaService.NivelActual} ===");
-           _recetaService.MostrarIngredientesValidos();
+            Console.WriteLine($"=== {_jugador.Nombre} | NIVEL {_recetaService.NivelActual}: {_recetaService.NombreNivel} ===");
+           var ingredientes = _recetaService.IngredientesAleatorios();
+           Console.WriteLine($"Ingredientes disponibles: {string.Join(", ", ingredientes)}");
            Console.WriteLine($"\nVidas: {new string('❤', _vidas)}");
           Console.WriteLine($"La hamburguesa tiene {_recetaService.RecetaCorrecta.Count} ingredientes. ¡ADIVINA EL ORDEN!\n");
 

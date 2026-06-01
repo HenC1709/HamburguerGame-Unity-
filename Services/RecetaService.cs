@@ -36,11 +36,30 @@ public class RecetaService
 
   private readonly List<string> _Pistas = new()
   {
-    "",
-    "",
-    "Pista: Empieza y termina igual 👀",
-    "Pista: el primer ingrediente es 'pan' y lleva 7 capas 🧅"  
+        "Pista: Un inicio y un final esponjoso.",
+        "Pista: El queso va sobre la carne.",
+        "Pista: ¡El tocino es la clave!",
+        "Pista: Cuidado, ¡pica un poco!",
+        "Pista: Mucho verde y nada de carne.",
+        "Pista: ¿Un huevo en una hamburguesa?",
+        "Pista: La salsa BBQ es la protagonista.",
+        "Pista: Son 8 capas de puro sabor.",
+        "Pista: Lleva absolutamente de todo."
   };
+
+private readonly List<string> _nombres = new()
+{
+    "La Clásica",
+    "Cheeseburger",
+    "Bacon Burger",
+    "Pollo Picante",
+    "Veggie Completa",
+    "Breakfast Burger",
+    "BBQ Especial",
+    "Todo Terreno",
+    "Desafío del Chef"
+};
+  public string NombreNivel => _nombres[_niveActual];
   private int _niveActual = 0;
   private static readonly Random _rng = new();
   public List<string> RecetaCorrecta => _niveles[_niveActual];
@@ -52,7 +71,7 @@ public class RecetaService
  public string ObtenerPista() => _niveActual < _Pistas.Count ? _Pistas[_niveActual] : "";
  public List<string> IngredientesAleatorios()
     {
-        var lista = new List<string>(IngredientesValidos);
+        var lista = new List<string>(RecetaCorrecta.Distinct());
         return lista.OrderBy(_ => _rng.Next()).ToList();
     }
   
@@ -73,8 +92,4 @@ public class RecetaService
     public bool EsValido(string ingrediente) =>
     IngredientesValidos.Contains(ingrediente.ToLower());
 
-    public void MostrarIngredientesValidos()
-    {
-        Console.WriteLine($"Ingredientes Disponibles: {string.Join(",", IngredientesValidos)}");
-    }
 }
