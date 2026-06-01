@@ -4,59 +4,25 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 
-var SaveService = new SaveService();
-var RecetaService = new RecetaService();
-var LoginManager = new LoginManager(saveService); 
+var saveService = new SaveService();
+var recetaService = new RecetaService();
+var loginManager = new LoginManager(saveService); 
 
 
 //login o nuevo jugador 
-var jugadores = SaveService.ObtenerJugadores();
-Jugador jugador;
-
-if (jugadores.Count == 0)
-{
-    Console.Write("Nombre de jugador: ");
-    var nombre = Console.ReadLine()?.Trim() ?? "Jugador";
-    jugador = new Jugador { Nombre = nombre };
-    SaveService.Guardar(jugador);
-}
-else
-{
-    Console.WriteLine("=== JUGADORES ===");
-    for (int i = 0; i < jugadores.Count; i++)
-        Console.WriteLine($"  {i + 1}. {jugadores[i]}");
-    Console.WriteLine($"  {jugadores.Count + 1}. Nuevo jugador");
-
-    Console.Write("\nElegí un número: ");
-    var opcion = int.TryParse(Console.ReadLine(), out int idx) ? idx : 1;
-
-    if (opcion == jugadores.Count + 1)
-    {
-        Console.Write("Nombre: ");
-        var nombre = Console.ReadLine()?.Trim() ?? "Jugador";
-        jugador = new Jugador { Nombre = nombre };
-        SaveService.Guardar(jugador);
-    }
-    else
-    {
-        var nombre = jugadores[Math.Clamp(opcion - 1, 0, jugadores.Count - 1)];
-        jugador = SaveService.Cargar(nombre) ?? new Jugador { Nombre = nombre };
-        Console.WriteLine($"\nBienvenido de vuelta, {jugador.Nombre}! | Nivel {jugador.NivelActual + 1} | Mejor puntaje: {jugador.MejorPuntaje}");
-        Console.WriteLine("Enter para continuar...");
-        Console.ReadLine();
-    }
-}
-RecetaService.SetNivel(jugador.NivelActual);
+Jugador jugador = loginManager.InicarSesion();
+// Inicamos el jueggo
+recetaService.SetNivel(jugador.NivelActual);
 int vidas = 3;
 while (vidas > 0)
 {
     Console.Clear();
-    Console.WriteLine($"=== {jugador.Nombre} | NIVEL {RecetaService.NivelActual} ===");
-    RecetaService.MostrarIngredientesValidos();
+    Console.WriteLine($"=== {jugador.Nombre} | NIVEL {recetaService.NivelActual} ===");
+    recetaService.MostrarIngredientesValidos();
    Console.WriteLine($"\nVidas: {new string('❤', vidas)}");
-   Console.WriteLine($"La hamburguesa tiene {RecetaService.RecetaCorrecta.Count} ingredientes. ¡ADIVINA EL ORDEN!\n");
+   Console.WriteLine($"La hamburguesa tiene {recetaService.RecetaCorrecta.Count} ingredientes. ¡ADIVINA EL ORDEN!\n");
 
-var pista = RecetaService.ObtenerPista();
+var pista = recetaService.ObtenerPista();
 if (!string.IsNullOrEmpty(pista))
 Console.WriteLine(pista + "\n");
 
@@ -70,13 +36,13 @@ foreach (var n in new[] { "3", "2", "1", "¡GO! 🍔 "})
 var stopwatch = Stopwatch.StartNew();
 var hamburguesa = new Hamburguesa();
 
-while (hamburguesa.Count < RecetaService.RecetaCorrecta.Count)
+while (hamburguesa.Count < recetaService.RecetaCorrecta.Count)
 {
     var input = Console.ReadLine()?.Trim().ToLower();
     if (input == "rendirse") break; // salida manual
     if (string.IsNullOrEmpty(input)) continue;
 
-    if (!RecetaService.EsValido(input))
+    if (!recetaService.EsValido(input))
     {
      Console.WriteLine($"{input}' no es un ingrediente valido.");
      continue;
@@ -88,7 +54,7 @@ stopwatch.Stop();
 int segundos = (int)stopwatch.Elapsed.TotalSeconds;
 int puntaje = Math.Max(0, 1000 - (segundos * 10));
 
-if (hamburguesa.Verificar(RecetaService.RecetaCorrecta))
+if (hamburguesa.Verificar(recetaService.RecetaCorrecta))
     {
         Console.WriteLine($"\n✅ ¡CORRECTO! 🍔");
         Console.WriteLine($"⏱  Tiempo: {segundos}s");
@@ -101,16 +67,16 @@ if (hamburguesa.Verificar(RecetaService.RecetaCorrecta))
             Console.WriteLine("🏅 ¡NUEVO MEJOR PUNTAJE!");
         }
 
-        if (!RecetaService.HayMasNiveles)
+        if (!recetaService.HayMasNiveles)
         {
             Console.WriteLine("¡Completaste todos los niveles! 🏆");
-            SaveService.Guardar(jugador);
+            saveService.Guardar(jugador);
             break;
         }
-        RecetaService.SiguienteNivel();
-        jugador.NivelActual = RecetaService.NivelActual - 1;
+        recetaService.SiguienteNivel();
+        jugador.NivelActual = recetaService.NivelActual - 1;
         jugador.MejorNivel = Math.Max(jugador.MejorNivel, jugador.NivelActual);
-        SaveService.Guardar(jugador);
+        saveService.Guardar(jugador);
 
         vidas = 3;
         Console.WriteLine("siguiente nivel.. Enter para continuar.");
@@ -123,8 +89,7 @@ if (hamburguesa.Verificar(RecetaService.RecetaCorrecta))
         : "\nGame Over. 💀");
 
         jugador.PartidasJugadas++;
-        SaveService.Guardar(jugador);
+        saveService.Guardar(jugador);
     }
     Console.ReadLine();
-
 }
