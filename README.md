@@ -18,7 +18,7 @@ Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 - [x] Countdown épico + display de puntaje
 - [x] Refactor Main — LoginManager + GameLoop
 - [ ] Migración a Unity
-
+```
 ## Estructura
 HamburgerGame/
 ├── Models/
@@ -35,7 +35,7 @@ HamburgerGame/
 ├── Datos/
 │   └── [jugador].json
 └── Program.cs
-
+```
 ## Roadmap hacia Unity
 ### Etapa 1 — C# pendiente
 - [ ] Herencia básica
