@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO.Pipes;
 namespace Hamburguesas.Services;
 
 public class RecetaService
@@ -48,7 +49,7 @@ public class RecetaService
 
   public void SetNivel(int nivel) => _niveActual = Math.Clamp(nivel, 0, _niveles.Count - 1);
  public void SiguienteNivel() => _niveActual++;
- public string ObtenerPista() => _Pistas[_niveActual];
+ public string ObtenerPista() => _niveActual < _Pistas.Count ? _Pistas[_niveActual] : "";
  public List<string> IngredientesAleatorios()
     {
         var lista = new List<string>(IngredientesValidos);

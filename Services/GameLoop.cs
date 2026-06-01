@@ -30,6 +30,7 @@ namespace Hamburguesas.Services
 
         private void MostrarEstado()
         {
+            Console.Clear();
             Console.WriteLine($"=== {_jugador.Nombre} | NIVEL {_recetaService.NivelActual} ===");
            _recetaService.MostrarIngredientesValidos();
            Console.WriteLine($"\nVidas: {new string('❤', _vidas)}");

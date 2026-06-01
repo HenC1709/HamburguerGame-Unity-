@@ -11,7 +11,7 @@ namespace Hamburguesas.Services
            _saveService = saveService;
         }
 
-        public Jugador InicarSesion()
+        public Jugador IniciarSesion()
         {
             var jugadores = _saveService.ObtenerJugadores();
             Jugador jugador;
