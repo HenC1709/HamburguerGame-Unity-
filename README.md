@@ -16,15 +16,16 @@ Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 - [x] Auto-completar al llenar ingredientes (sin "listo")
 - [x] Opción rendirse
 - [x] Countdown épico + display de puntaje
+- [ ] Refactor Program.cs — extraer GameLoop, LoginFlow a clases propias
 - [ ] Refactor para Unity
-
 ## Roadmap hacia Unity
 
-### Etapa 1 — C# que falta (antes de abrir Unity)
+### Etapa 1 — Antes de Unity
 - [ ] Herencia básica
-- [ ] Clases abstractas
-- [ ] Enums (GameState, NivelState)
+- [ ] Clases abstractas  
+- [ ] Enums
 - [ ] Events y delegates
+- [ ] **Refactor Main** — GameManager.cs + LoginManager.cs
 
 ### Etapa 2 — Unity fundamentos (sin juego aún)
 - [ ] GameObjects y Components

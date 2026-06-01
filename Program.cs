@@ -1,9 +1,12 @@
 ﻿using Hamburguesas.Models;
 using Hamburguesas.Services;
+using System;
 using System.Diagnostics;
+using System.Threading;
 
 var SaveService = new SaveService();
 var RecetaService = new RecetaService();
+var LoginManager = new LoginManager(saveService); 
 
 
 //login o nuevo jugador 
@@ -125,10 +128,3 @@ if (hamburguesa.Verificar(RecetaService.RecetaCorrecta))
     Console.ReadLine();
 
 }
-
-
-
-
-
-
-
