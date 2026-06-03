@@ -20,7 +20,7 @@ Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 - [x] Ingredientes por nivel en orden aleatorio sin duplicados
 - [x] Nombre del nivel en pantalla
 - [ ] Migración a Unity
-
+```
 ## Estructura
 HamburgerGame/
 ├── Models/
@@ -37,7 +37,7 @@ HamburgerGame/
 ├── Datos/
 │   └── [jugador].json
 └── Program.cs
-
+```
 ## Roadmap hacia Unity
 ### Etapa 1 — C# pendiente
 - [x] Herencia básica
