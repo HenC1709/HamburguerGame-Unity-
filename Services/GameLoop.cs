@@ -48,11 +48,21 @@ namespace Hamburguesas.Services
             Console.WriteLine("\n");
         }
 
-        private void JugarRonda()
+        private void JugarRonda() // para mi yo del futuro, crear un private de definir tipo de hamburesa xd
         {
             var stopwatch = Stopwatch.StartNew();
-            var hamburguesa = new Hamburguesa();
-          while (hamburguesa.Count < _recetaService.RecetaCorrecta.Count)
+            var recetaActual = _recetaService.RecetaCorrecta;
+            Hamburguesa hamburguesa;
+
+            if (recetaActual.Count > 1 && recetaActual[1].ToLower() == "doble")
+            {
+                hamburguesa = new HamburguesaDoble();
+            }
+            else
+            {
+                hamburguesa = new Hamburguesa();
+            }
+          while (hamburguesa.Count < recetaActual.Count)
             {
                 var input = Console.ReadLine()?.Trim().ToLower();
                 if (input == "rendirse") break; // salida manual

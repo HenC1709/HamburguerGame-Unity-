@@ -1,12 +1,10 @@
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using Hamburguesas.interfaces;
 
 namespace Hamburguesas.Models
 {
   public class Hamburguesa : IVerificable
     {
-        private List<Ingrediente> _ingredientes = new ();
+       protected List<Ingrediente> _ingredientes = new ();
 
         public void AgregarIngrediente(Ingrediente ingrediente)
         {
@@ -14,7 +12,7 @@ namespace Hamburguesas.Models
             Console.WriteLine($"+ {ingrediente.Nombre} agregado");
         }
 
-        public bool Verificar (List<string> receta)
+        public virtual bool Verificar (List<string> receta)
         {
             if (_ingredientes.Count != receta.Count) return false;
 

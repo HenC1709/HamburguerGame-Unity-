@@ -40,7 +40,7 @@ HamburgerGame/
 
 ## Roadmap hacia Unity
 ### Etapa 1 — C# pendiente
-- [ ] Herencia básica
+- [x] Herencia básica
 - [ ] Clases abstractas
 - [ ] Enums
 - [ ] Events y delegates
