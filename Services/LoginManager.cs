@@ -19,7 +19,8 @@ namespace Hamburguesas.Services
             if (jugadores.Count == 0)
             {
                Console.Write("Nombre de jugador: ");
-               var nombre = Console.ReadLine()?.Trim() ?? "Jugador";
+               var nombre = Console.ReadLine()?.Trim() ?? "";
+               if (string.IsNullOrEmpty(nombre)) nombre = "Jugador";
               jugador = new Jugador { Nombre = nombre };
               _saveService.Guardar(jugador);
             }

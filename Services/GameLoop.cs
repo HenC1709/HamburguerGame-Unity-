@@ -52,16 +52,8 @@ namespace Hamburguesas.Services
         {
             var stopwatch = Stopwatch.StartNew();
             var recetaActual = _recetaService.RecetaCorrecta;
-            Hamburguesa hamburguesa;
+            var hamburguesa = CrearHamburguesa(recetaActual);
 
-            if (recetaActual.Count > 1 && recetaActual[1].ToLower() == "doble")
-            {
-                hamburguesa = new HamburguesaDoble();
-            }
-            else
-            {
-                hamburguesa = new Hamburguesa();
-            }
           while (hamburguesa.Count < recetaActual.Count)
             {
                 var input = Console.ReadLine()?.Trim().ToLower();
@@ -77,6 +69,13 @@ namespace Hamburguesas.Services
             }
             stopwatch.Stop();
             ProcesarResultado(hamburguesa, (int)stopwatch.Elapsed.TotalSeconds);
+        }
+        private Hamburguesa CrearHamburguesa(List<string> receta)
+        {
+            if (receta.Count > 1 && receta[1].ToLower() == "doble")
+            return new HamburguesaDoble();
+
+            return new Hamburguesa();
         }
 
         private void ProcesarResultado(Hamburguesa hamburguesa, int segundos)

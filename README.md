@@ -19,6 +19,7 @@ Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 - [x] Refactor Main — LoginManager + GameLoop
 - [x] Ingredientes por nivel en orden aleatorio sin duplicados
 - [x] Nombre del nivel en pantalla
+- [ ] Hamburguesa Doble | Hamburgesa Vegana
 - [ ] Migración a Unity
 ```
 ## Estructura
