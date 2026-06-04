@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hamburguesas.Enums;
 namespace Hamburguesas.Services;
 
 public class RecetaService
@@ -115,6 +116,18 @@ private readonly List<string> _nombres = new()
     // Otras opciones / Proteínas
     "pollo", "pescado", "vegana", "doble"
 };
+
+public TipoHamburguesa ObtenerTipo(List<string> receta)
+    {
+        if (receta.Count > 1 && receta[1].ToLower() == "doble")
+          return TipoHamburguesa.Doble;
+
+          if (receta.Contains("vegana"))
+          return TipoHamburguesa.Vegana;
+
+          return TipoHamburguesa.Normal;
+        
+    }
     public bool EsValido(string ingrediente) =>
     IngredientesValidos.Contains(ingrediente.ToLower());
 

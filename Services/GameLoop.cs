@@ -1,3 +1,4 @@
+using Hamburguesas.Enums;
 using Hamburguesas.Models;
 using System.Diagnostics;
 namespace Hamburguesas.Services
@@ -72,16 +73,12 @@ namespace Hamburguesas.Services
         }
         private Hamburguesa CrearHamburguesa(List<string> receta)
         {
-            if (receta.Count > 1 && receta[1].ToLower() == "doble")
+            return _recetaService.ObtenerTipo(receta) switch
             {
-               return new HamburguesaDoble(); 
-            }
-            if (receta.Contains("vegana"))
-            {
-                return new HamburguesaVegana();
-            }
-            
-            return new HamburguesaNormal();
+               TipoHamburguesa.Doble => new HamburguesaDoble(),
+               TipoHamburguesa.Vegana => new HamburguesaVegana(),
+                _                     => new HamburguesaNormal()
+            };
         }
 
         private void ProcesarResultado(Hamburguesa hamburguesa, int segundos)
