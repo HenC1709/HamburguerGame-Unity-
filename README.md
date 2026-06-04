@@ -19,7 +19,7 @@ Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 - [x] Refactor Main — LoginManager + GameLoop
 - [x] Ingredientes por nivel en orden aleatorio sin duplicados
 - [x] Nombre del nivel en pantalla
-- [ ] Hamburguesa Doble | Hamburgesa Vegana
+- [x] Hamburguesa Doble con herencia y override
 - [ ] Migración a Unity
 ```
 ## Estructura
@@ -76,6 +76,11 @@ HamburgerGame/
 | 7 | BBQ Especial | 7 |
 | 8 | Todo Terreno | 8 |
 | 9 | Desafío del Chef | 10 |
+| 10 | La Tex-Mex | 9 |
+| 11 | La Doble Infernal | 10 |
+| 12 | La Chef Secreta | 10 |
+| 13 | El Monstruo | 12 |
+| 14 | La Última Cena | 13 |
 
 ## Puntaje
 Base: 1000 pts — 10 por cada segundo usado.
