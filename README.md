@@ -33,7 +33,9 @@ HamburgerGame/
 │   ├── Hamburguesa.cs
 │   └── Jugador.cs
 ├── Interfaces/
-│   └── IVerificable.cs
+│    └── IVerificable.cs
+├── Enums/
+│   ├── TipoHamburguesa
 ├── Services/
 │   ├── RecetaService.cs
 │   ├── SaveService.cs
