@@ -81,7 +81,7 @@ namespace Hamburguesas.Services
                 return new HamburguesaVegana();
             }
             
-            return new Hamburguesa();
+            return new HamburguesaNormal();
         }
 
         private void ProcesarResultado(Hamburguesa hamburguesa, int segundos)

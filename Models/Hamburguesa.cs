@@ -2,7 +2,7 @@ using Hamburguesas.interfaces;
 
 namespace Hamburguesas.Models
 {
-  public class Hamburguesa : IVerificable
+  public abstract class Hamburguesa : IVerificable
     {
        protected List<Ingrediente> _ingredientes = new ();
 

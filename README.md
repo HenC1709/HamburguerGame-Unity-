@@ -20,6 +20,7 @@ Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 - [x] Ingredientes por nivel en orden aleatorio sin duplicados
 - [x] Nombre del nivel en pantalla
 - [x] Hamburguesa Doble con herencia y override
+- [x] Hamburguesa Vegana con herencia y override
 - [ ] Migración a Unity
 ```
 ## Estructura
