@@ -48,7 +48,7 @@ namespace Hamburguesas.Services
             Console.WriteLine("\n");
         }
 
-        private void JugarRonda() // para mi yo del futuro, crear un private de definir tipo de hamburesa xd
+        private void JugarRonda() 
         {
             var stopwatch = Stopwatch.StartNew();
             var recetaActual = _recetaService.RecetaCorrecta;
@@ -73,8 +73,14 @@ namespace Hamburguesas.Services
         private Hamburguesa CrearHamburguesa(List<string> receta)
         {
             if (receta.Count > 1 && receta[1].ToLower() == "doble")
-            return new HamburguesaDoble();
-
+            {
+               return new HamburguesaDoble(); 
+            }
+            if (receta.Contains("vegana"))
+            {
+                return new HamburguesaVegana();
+            }
+            
             return new Hamburguesa();
         }
 

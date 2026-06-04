@@ -107,7 +107,7 @@ private readonly List<string> _nombres = new()
     "pan", "carne", "queso", "lechuga", "tomate", "cebolla",
     
     // Extras clásicos
-    "tocino", "huevo", "pepinillo", "jalapeño", "champiñones", "Aguacate",
+    "tocino", "huevo", "pepinillo", "jalapeño", "champiñones", "aguacate",
     
     // Salsas
     "ketchup", "mayonesa", "mostaza", "bbq", "picante",
