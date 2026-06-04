@@ -68,6 +68,13 @@ namespace Hamburguesas.Services
                 }
                 hamburguesa.AgregarIngrediente(new Ingrediente(input));
             }
+            if (hamburguesa.Count < recetaActual.Count)
+            {
+                _vidas--;
+                if (_vidas <= 0)
+                 OnGameOver?.Invoke();
+                return;
+            }
             stopwatch.Stop();
             ProcesarResultado(hamburguesa, (int)stopwatch.Elapsed.TotalSeconds);
         }
@@ -93,7 +100,7 @@ namespace Hamburguesas.Services
 
                 if (!_recetaService.HayMasNiveles)
                 {
-                    Console.WriteLine("¡Completaste todos los niveles! 🏆");
+                    OnJuegoCompletado?.Invoke();
                     _vidas = 0;
                 }
                 else
@@ -102,17 +109,24 @@ namespace Hamburguesas.Services
                     _jugador.NivelActual = _recetaService.NivelActual - 1;
                     _jugador.MejorNivel = Math.Max(_jugador.MejorNivel, _jugador.NivelActual);
                     _vidas = 3;
-                    Console.WriteLine("Siguiente nive... ");
+                    OnNivelCompletado?.Invoke();
                 }
             }
             else
             {
                 _vidas--;
                 _jugador.PartidasJugadas++;
-                Console.WriteLine(_vidas > 0 ? $"\n❌ Incorrecto. Vidas: {_vidas}. Enter para reintentar." : "\n💀 Game Over.");
+                if(_vidas > 0)
+                Console.WriteLine($"\n❌ Incorrecto. '❤' Vidas: {_vidas}.");
+                else
+                OnGameOver?.Invoke();
             }
             _saveService.Guardar(_jugador);
             Console.ReadLine();
         }
+
+        public event Action? OnNivelCompletado;
+        public event Action? OnJuegoCompletado;
+        public event Action? OnGameOver;
     }
 }

@@ -27,6 +27,9 @@ Juego de consola en C# para practicar lógica y POO antes de migrar a Unity.
 HamburgerGame/
 ├── Models/
 │   ├── Ingrediente.cs
+│   ├── HamburguesaDoble.cs
+│   ├── HamburuesaVegana.cs
+│   ├── HamburguesaNormal.cs
 │   ├── Hamburguesa.cs
 │   └── Jugador.cs
 ├── Interfaces/
@@ -45,7 +48,7 @@ HamburgerGame/
 - [x] Herencia básica
 - [x] Clases abstractas
 - [x] Enums
-- [ ] Events y delegates
+- [x] Events y delegates
 
 ### Etapa 2 — Unity fundamentos
 - [ ] GameObjects y Components
@@ -89,7 +92,11 @@ Base: 1000 pts — 10 por cada segundo usado.
 ## Conceptos practicados
 - Interfaces
 - Clases y encapsulamiento
-- Listas, HashSet, ordenamiento aleatorio
+- Herencia y polimorfismo (Hamburguesa → Normal, Doble, Vegana)
+- Clases abstractas
+- Enums y switch expressions
+- Events y delegates
+- Listas, HashSet, LINQ (OrderBy, Distinct)
 - Serialización JSON (System.Text.Json)
 - Separación de responsabilidades
 - Inyección de dependencias (constructor injection)
