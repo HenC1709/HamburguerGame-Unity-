@@ -8,9 +8,21 @@ public class MenuController : MonoBehaviour
 
     public void OnPlayButtonClick()
     {
-        Debug.Log("Botón presionado!");
-        if (string.IsNullOrEmpty(_nameInput.text)) return;
+        string playerName = _nameInput.text;
+        if (string.IsNullOrEmpty(playerName))
+        {
+            Debug.LogWarning("El nombre del jugador no puede estar vacío.");
+            return;
+        }
+
+        PlayerPrefs.SetString("PlayerName", playerName);
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void OnExitButtonClick()
+    {
+        Debug.Log("Saliendo del juego...");
+        Application.Quit();
     }
 
 }

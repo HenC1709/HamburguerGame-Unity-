@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void AgregarIngrediente(string ingrediente)
       {
+        if (_vidas <= 0) return;
         if (!_recetaService.EsValido(ingrediente)) return;
     
        _hamburguesa.AgregarIngrediente(new Ingrediente(ingrediente));
@@ -87,8 +88,19 @@ public class GameManager : MonoBehaviour
         _jugador.PartidasJugadas++;
         if (_vidas <= 0)
             OnGameOver?.Invoke();
+        else
+        IniciarRonda(); 
     }
 
-    _saveService.Guardar(_jugador); // ← siempre guarda al final
+    _saveService.Guardar(_jugador);
+     // ← siempre guarda al final
+
 }
+public List<string> ObtenerIngredientes()
+    { 
+        return _recetaService.IngredientesAleatorios();
+    }
+public int Vidas => _vidas;
+public string NombreNivel => _recetaService.NombreNivel;
+public int NivelActual => _recetaService.NivelActual;
 }

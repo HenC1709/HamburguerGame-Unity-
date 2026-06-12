@@ -145,10 +145,10 @@ La UI se suscribe a estos eventos para navegar entre escenas o actualizar la pan
 - [x] Migrar modelos, enums e interfaces
 - [x] Migrar RecetaService y SaveService
 - [x] Construir GameManager (MonoBehaviour)
-- [ ] Assets: sprite sheet de ingredientes (craft-a-burger, pixdio)
-- [ ] Crear escenas: Menu, Juego, GameOver
-- [ ] Construir Canvas UI (vidas, nivel, puntaje, pista)
-- [ ] Botones de ingredientes conectados a `AgregarIngrediente()`
+- [x] Assets: sprite sheet de ingredientes (craft-a-burger, pixdio)
+- [x] Crear escenas: Menu, Juego, GameOver
+- [x] Construir Canvas UI (vidas, nivel, puntaje, pista)
+- [x] Botones de ingredientes conectados a `AgregarIngrediente()`
 - [ ] Drag & drop de ingredientes
 - [ ] Sistema de sonidos (SFX + música)
 - [ ] Countdown animado (Coroutine 3, 2, 1, GO!)
